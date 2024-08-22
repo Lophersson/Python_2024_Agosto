@@ -1,0 +1,41 @@
+# lasagna.py
+
+# Tiempo esperado de horneado en minutos
+EXPECTED_BAKE_TIME = 40
+
+def bake_time_remaining(elapsed_bake_time):
+    """
+    Calcula el tiempo de horneado restante.
+
+    :param elapsed_bake_time: Tiempo que ya ha pasado horneando.
+    :return: Tiempo restante de horneado derivado de 'EXPECTED_BAKE_TIME'.
+    """
+    return EXPECTED_BAKE_TIME - elapsed_bake_time
+
+def preparation_time_in_minutes(number_of_layers):
+    """
+    Calcula el tiempo de preparación en minutos.
+
+    :param number_of_layers: Número de capas de la lasaña.
+    :return: Tiempo de preparación en minutos (2 minutos por capa).
+    """
+    return number_of_layers * 2
+
+def elapsed_time_in_minutes(number_of_layers, elapsed_bake_time):
+    """
+    Calcula el tiempo total transcurrido en minutos.
+
+    :param number_of_layers: Número de capas de la lasaña.
+    :param elapsed_bake_time: Tiempo ya pasado horneando.
+    :return: Tiempo total transcurrido, incluyendo preparación y horneado.
+    """
+    preparation_time = preparation_time_in_minutes(number_of_layers)
+    return preparation_time + elapsed_bake_time
+
+# Importación de las funciones desde el módulo lasagna
+from lasagna import bake_time_remaining, preparation_time_in_minutes, elapsed_time_in_minutes
+
+# Ejemplos de uso
+print(bake_time_remaining(30))  # Debería imprimir: 10
+print(preparation_time_in_minutes(2))  # Debería imprimir: 4
+print(elapsed_time_in_minutes(3, 20))  # Debería imprimir: 26
