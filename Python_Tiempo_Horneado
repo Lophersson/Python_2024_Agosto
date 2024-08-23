@@ -1,0 +1,15 @@
+TIEMPO_ESPERADO_DE_HORNEADO = 40
+
+def tiempo_de_horneado_restante(tiempo_horneado_transcurrido):
+    return TIEMPO_ESPERADO_DE_HORNEADO - tiempo_horneado_transcurrido
+
+def tiempo_de_preparacion_en_minutos(numero_de_capas):
+    return numero_de_capas * 2
+
+def tiempo_total_en_minutos(numero_de_capas, tiempo_horneado_transcurrido):
+    tiempo_de_preparacion = tiempo_de_preparacion_en_minutos(numero_de_capas)
+    return tiempo_de_preparacion + tiempo_horneado_transcurrido
+
+print(f"Tiempo restante de horneado: {tiempo_de_horneado_restante(30)} minutos")
+print(f"Tiempo de preparación para {2} capas: {tiempo_de_preparacion_en_minutos(2)} minutos")
+print(f"Tiempo total en minutos para {3} capas con {20} minutos de horneado transcurrido: {tiempo_total_en_minutos(3, 20)} minutos")
