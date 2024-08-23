@@ -1,0 +1,53 @@
+import unittest
+
+# Definición de las funciones
+def exchange_money(budget, exchange_rate):
+    return budget / exchange_rate
+
+def get_change(budget, exchanging_value):
+    return budget - exchanging_value
+
+def get_value_of_bills(denomination, number_of_bills):
+    return denomination * number_of_bills
+
+def get_number_of_bills(amount, denomination):
+    return int(amount // denomination)
+
+def get_leftover_of_bills(amount, denomination):
+    return amount % denomination
+
+def exchangeable_value(budget, exchange_rate, spread, denomination):
+    effective_exchange_rate = exchange_rate * (1 + spread / 100)
+    exchanged_amount = budget / effective_exchange_rate
+    return get_number_of_bills(exchanged_amount, denomination) * denomination
+
+# Pruebas unitarias
+class TestCurrencyExchange(unittest.TestCase):
+
+    def test_exchange_money(self):
+        test_data = [(100000, 0.8), (700000, 10.0)]
+        result_data = [125000, 70000]
+
+        for variant, (params, expected) in enumerate(zip(test_data, result_data), start=1):
+            budget, exchange_rate = params
+
+            with self.subTest(f"variation #{variant}",
+                              budget=budget,
+                              exchange_rate=exchange_rate,
+                              expected=expected):
+
+                actual_result = exchange_money(*params)
+                error_message = (f'Called exchange_money({budget}, {exchange_rate}). '
+                                 f'The function returned {actual_result}, but '
+                                 f'the tests expected {expected} when exchanging '
+                                 f'{budget} at a rate of {exchange_rate}.')
+
+                self.assertAlmostEqual(actual_result, expected, msg=error_message)
+
+    # Aquí podrías añadir más métodos para probar las demás funciones si lo necesitas.
+    # Ejemplo:
+    # def test_get_change(self):
+    #     ...
+
+if __name__ == "__main__":
+    unittest.main()
