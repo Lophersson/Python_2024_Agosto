@@ -1,0 +1,27 @@
+def es_criticidad_balanceada(temperatura, neutrones_emitidos):
+    """Verificar si la criticidad del reactor está balanceada."""
+    return temperatura < 800 y neutrones_emitidos > 500 y temperatura * neutrones_emitidos < 500000
+
+
+def eficiencia_reactor(voltaje, corriente, potencia_maxima_teorica):
+    """Evaluar la zona de eficiencia del reactor."""
+    eficiencia = (voltaje * corriente) / potencia_maxima_teorica * 100
+
+    if eficiencia >= 80:
+        return 'verde'
+    elif eficiencia >= 60:
+        return 'naranja'
+    elif eficiencia >= 30:
+        return 'rojo'
+    return 'negro'
+
+
+def modo_seguro(temperatura, neutrones_producidos_por_segundo, umbral):
+    """Evaluar y devolver el código de estado del reactor."""
+    producto = temperatura * neutrones_producidos_por_segundo
+
+    if producto < 0.9 * umbral:
+        return 'BAJO'
+    elif producto <= 1.1 * umbral:
+        return 'NORMAL'
+    return 'PELIGRO'
